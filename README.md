@@ -1,41 +1,20 @@
-# upload_toy
+# validation_toy
 
-### 스프링에서 제공하는 파일 업로드 방식을 체화하기 위해 진행하는 단기간 프로젝트.
+### 스프링에서 제공하는 bean 검증, 메시지 기능을 체화하기 위한 토이 프로젝트. 앞에서 진행한 프로젝트들을 확장하는 형식.
 
-### DB를 연동해서 하면 좋겠지만 일단 그게 목적은 아니니깐 파일 업로드만 중점적으로 . ( Spring에서 제공하는 MultiPartFile 관련만 집중적으로 다룸)
+### 앞선 프로젝트들
+[1] : [upload_toy](https://github.com/cpu500m/upload_toy)
 
-### 만들고자 하는 페이지 ( 대략 )
+### 이번 프로젝트에 추가하고자 하는 것들
 
-### home
-<img width="340" alt="image" src="https://github.com/cpu500m/upload_toy/assets/80875680/5ecd1aa4-584e-4c16-a0eb-4ccd807a9648">
+### 게시판 디자인
+#### 다른 css style을 적용해보려고 함. 좀 더 게시판 느낌이 나는 css style로
 
+### validation
+#### 게시물을 작성할 때 제목 필수입력 , 작성자 필수입력 , 최대 글자 수 제한 등의 제약을 추가할 것임.
 
-### 게시물 열람
+### message ,internationalization
+#### 추후 페이지 확장을 위해 spring에서 제공하는 message 편의 클래스를 사용하고 , 국제화도 적용할 예정.
 
-<img width="333" alt="image" src="https://github.com/cpu500m/upload_toy/assets/80875680/85048ef1-39e2-4015-a83c-c8728b57868c">
-
-
-### 게시물 작성
-
-<img width="357" alt="image" src="https://github.com/cpu500m/upload_toy/assets/80875680/a983a425-d8e6-48ce-9764-816546cd3cd8">
-
-# ____ 결과 ____
-
-### 홈 화면
-<img width="441" alt="image" src="https://github.com/cpu500m/upload_toy/assets/80875680/dab35c75-e6e1-4595-afbe-29b940cd5631">
-
-### 게시물 등록 화면
-<img width="363" alt="image" src="https://github.com/cpu500m/upload_toy/assets/80875680/a6019c83-b8f9-4360-8747-8728d4a185dc">
-
-### 게시물 열람
-<img width="314" alt="image" src="https://github.com/cpu500m/upload_toy/assets/80875680/553909f1-4e2f-4184-a76e-70ad93ec8ccc">
-
-### 첨부파일 다운로드 + 서버 저장소 상황
-<img width="705" alt="image" src="https://github.com/cpu500m/upload_toy/assets/80875680/542e3860-5763-43fd-8b51-405dbb34c18d">
-<img width="442" alt="image" src="https://github.com/cpu500m/upload_toy/assets/80875680/b0266c02-a948-49ba-90d2-543db169f08b">
-
-
-## 후기
-
-#### message랑 validation을 적용하고 저장소도 메모리가 아닌 DB에 저장하는 방식이었으면 좀 더 재밌었을거 같음.. 시간은 훨씬 더 걸렸겠지만
-
+## 이후 프로젝트들에서 확장할 사항들
+### 예외 처리 및 오류 페이지 추가  -> 로그인 기능 -> DB연결
