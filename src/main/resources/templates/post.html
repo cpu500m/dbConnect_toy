@@ -17,26 +17,26 @@ max-width: 560px;
         <h2 th:text="|*{itemId}번째 게시물|">게시물</h2>
     </div>
     <div>
-        <label for="title">제목</label>
+        <label for="title" th:text = "#{label.title}" >제목1</label>
         <input type="text" id="title" class="form-control"
                th:value="*{title}" readonly>
     </div>
     <div>
-        <label for="writer">작성자</label>
+        <label for="writer" th:text = "#{label.writer}">작성자</label>
         <input type="text" id="writer" class="form-control"
                th:value="*{writer}" readonly>
     </div>
     <div>
-        <label for="text">내용</label>
+        <label for="text" th:text = "#{label.text}">내용</label>
         <textarea cols = "150" rows="10" id="text" th:field="*{text}" class = "form-control" readonly></textarea>
     </div>
     <div>
-        <label for="images"> 이미지 파일</label></br>
+        <label for="images" th:text = "#{label.images}"> 이미지 파일</label></br>
         <img id="images" th:each="imageFile : ${item.imageFiles}" th:src="|/images/${imageFile.storeName}|" width="300" height="300"/>
     </div>
 
     <div>
-        <label for ="attach">첨부 파일</label>
+        <label for ="attach" th:text = "#{label.attach}">첨부 파일</label>
         <a id = "attach" th:if="*{attachFile}" th:href="|/attach/*{itemId}|"
            th:text="${item.getAttachFile().getOriginName()}" />
     </div>
@@ -45,7 +45,7 @@ max-width: 560px;
 
     <div class="row">
         <div class="col">
-            <button class="w-100 btn btn-secondary btn-lg" type="button"
+            <button class="w-100 btn btn-secondary btn-lg" type="button" th:text = "#{button.home}"
                     th:onclick = "|location.href='@{/}'|">홈으로</button>
         </div>
     </div>

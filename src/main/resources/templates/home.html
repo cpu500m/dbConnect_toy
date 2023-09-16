@@ -13,7 +13,7 @@
     <div class="row">
         <div class="col">
             <button class="btn btn-primary float-end"
-                    onclick="location.href='addPost.html'"
+                    onclick="location.href='addPost.html'" th:text = "#{button.write}"
                     th:onclick="|location.href= '@{/addPost}'|" type="button">게시물 등록</button>
         </div>
     </div>
@@ -22,9 +22,9 @@
         <table class="table">
             <thead>
             <tr>
-                <th>게시번호</th>
-                <th>제목</th>
-                <th>작성자</th>
+                <th th:text = "#{label.no}">게시번호</th>
+                <th th:text = "#{label.title}">제목</th>
+                <th th:text = "#{label.writer}">작성자</th>
             </tr>
             </thead>
             <tbody>
