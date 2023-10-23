@@ -1,21 +1,20 @@
 # validation_toy
 
-### 스프링에서 제공하는 bean 검증, 메시지 기능을 체화하기 위한 토이 프로젝트. 앞에서 진행한 프로젝트들을 확장하는 형식.
+### 스프링 인터셉터를 활용해 로그인 기능을 구현해보는 토이 프로젝트. 앞에서 진행한 프로젝트들을 확장하는 형식.
 
 ### 앞선 프로젝트들
 [1] : [upload_toy](https://github.com/cpu500m/upload_toy)
+[2] : [validation_toy](https://github.com/cpu500m/validation_toy)
 
 ### 이번 프로젝트에 추가하고자 하는 것들
 
-### 게시판 디자인
-#### 다른 css style을 적용해보려고 함. 좀 더 게시판 느낌이 나는 css style로
+### 로그인 기능
+#### DispatcherServlet과 Controller 사이 인터셉터를 두어 login 기능을 구현할 예정!
+#### + login한 사용자만 글을 작성할 수 있게 검증추가 
 
-### validation
-#### 게시물을 작성할 때 제목 필수입력 , 작성자 필수입력 , 최대 글자 수 제한 등의 제약을 추가할 것임.
-
-### message ,internationalization
-#### 추후 페이지 확장을 위해 spring에서 제공하는 message 편의 클래스를 사용하고 , 국제화도 적용할 예정.
+### 페이지 추가
+#### 로그인 및 회원가입 페이지를 추가. login하지 않은 사용자가 글 작성하려 하면 login 화면으로 이동.
 
 ## 이후 프로젝트들에서 확장할 사항들
-### 예외 처리 및 오류 페이지 추가  -> 로그인 기능 -> DB연결
+### 게시물 검색기능 -> DB연결  ( + Oauth2도 써보고싶음(spring security를 통해!))
 
