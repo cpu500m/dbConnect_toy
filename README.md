@@ -3,7 +3,7 @@
 ### 스프링 인터셉터를 활용해 로그인 기능을 구현해보는 토이 프로젝트. 앞에서 진행한 프로젝트들을 확장하는 형식.
 
 ### 앞선 프로젝트들
-[1] : [upload_toy](https://github.com/cpu500m/upload_toy)
+[1] : [upload_toy](https://github.com/cpu500m/upload_toy)<br>
 [2] : [validation_toy](https://github.com/cpu500m/validation_toy)
 
 ### 이번 프로젝트에 추가하고자 하는 것들
