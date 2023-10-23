@@ -22,11 +22,27 @@ repositories {
 }
 
 dependencies {
+
+	/* 뷰 템플릿 thymeleaf 사용 */
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	/* web 기술( 내장 tomcat 등) */
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	/* lombok */
 	compileOnly 'org.projectlombok:lombok'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.projectlombok:lombok'
+
+	// for test
+	testCompileOnly 'org.projectlombok:lombok'
+	testAnnotationProcessor 'org.projectlombok:lombok'
+
+	/* recompile을 통한 편리한 디버깅 */
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+	/* validation */
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+	/* junit */
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 

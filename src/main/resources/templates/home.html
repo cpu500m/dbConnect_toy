@@ -7,19 +7,19 @@
 </head>
 <body>
 <div class="container" style="max-width: 600px">
-    <div class="py-5 text-center">
+    <div class="py-4 text-center">
         <h2>게시판</h2>
     </div>
     <div class="row">
         <div class="col">
-            <button class="btn btn-primary float-end"
+            <button class="btn btn-outline-primary float-end"
                     onclick="location.href='addPost.html'" th:text = "#{button.write}"
                     th:onclick="|location.href= '@{/addPost}'|" type="button">게시물 등록</button>
         </div>
     </div>
     <hr class="my-4">
     <div>
-        <table class="table">
+        <table class="table table-striped table-hover">
             <thead>
             <tr>
                 <th th:text = "#{label.no}">게시번호</th>
@@ -29,7 +29,7 @@
             </thead>
             <tbody>
             <tr th:each="post : ${posts}">
-                <td><a href="post.html" th:href="@{|/post/${post.postId}|}" th:text="${post.postId}">1</a></td>
+                <td><a th:text="${post.postId}">1</a></td>
                 <td><a href="post.html" th:href="@{|/post/${post.postId}|}" th:text="${post.title}">첫번째 게시물</a></td>
                 <td th:text="${post.writer}">cpu500m</td>
             </tr>

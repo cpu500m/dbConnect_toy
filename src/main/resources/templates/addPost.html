@@ -10,6 +10,10 @@
 .container {
 max-width: 560px;
 }
+.field-error {
+border-color: #dc3545;
+color: #dc3545;
+}
 </style>
 </head>
 <body>
@@ -20,18 +24,29 @@ max-width: 560px;
   <form action="post.html" th:action th:object ="${itemForm}" enctype="multipart/form-data" method="post">
     <div>
       <label for="title" th:text = "#{label.title}">제목</label>
-      <input type="text" id="title"  class="form-control" th:field ="*{title}"
+      <input type="text" id="title"  th:errorclass = "field-error" class="form-control" th:field ="*{title}"
              placeholder="제목을 입력하세요">
+      <div class="field-error" th:each="error,stat : ${#fields.errors('title')}"
+           th:text="${error}" th:if="${stat.first}">
+        제목 필수
+      </div>
     </div>
     <div>
       <label for="writer" th:text = "#{label.writer}">작성자</label>
-      <input type="text" id="writer"  class="form-control" th:field ="*{writer}"
+      <input type="text" id="writer" th:errorclass = "field-error" class="form-control" th:field ="*{writer}"
              placeholder="닉네임을 입력하세요">
+      <div class="field-error" th:errors="*{writer}">
+        작성자 필수
+      </div>
     </div>
     <div>
       <label for="text" th:text = "#{label.text}">내용</label>
-      <textarea cols = "150" rows="10" id="text" th:field="*{text}" class = "form-control"
+      <textarea cols = "150" rows="10" id="text" th:field="*{text}"  th:errorclass = "field-error" class = "form-control"
                 placeholder="내용을 입력하세요."></textarea>
+    </div>
+    <div class="field-error" th:each="error,stat : ${#fields.errors('text')}"
+         th:text="${error}" th:if="${stat.first}">
+      내용 필수
     </div>
     <div>
       <label for="imageFiles" th:text = "#{label.images}">이미지 파일</label>
@@ -45,7 +60,7 @@ max-width: 560px;
 
     <div class="row">
       <div class="col">
-        <button class="w-100 btn btn-primary btn-lg" th:text="#{button.save}"
+        <button class="w-100 btn btn-outline-primary btn-lg" th:text="#{button.save}"
                 onclick="location.href='items.html'" type="submit">등록</button>
       </div>
 

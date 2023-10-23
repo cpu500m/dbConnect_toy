@@ -1,6 +1,5 @@
 package toy1.upload_toy.controller;
 
-import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.Resource;
@@ -9,6 +8,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriUtils;
@@ -54,11 +55,19 @@ public class MainController {
     }
 
     @PostMapping("/addPost")
-    public String addPost(@ModelAttribute ItemForm itemForm, RedirectAttributes redirectAttributes) throws IOException {
+    public String addPost(@Validated @ModelAttribute ItemForm itemForm,
+                          BindingResult bindingResult,
+                          RedirectAttributes redirectAttributes) throws IOException {
         List<UploadFile> imageFiles = fileService.storeFiles(itemForm.getImageFiles());
         UploadFile attachFile = fileService.storeFile(itemForm.getAttachFile());
 
         log.debug("addPost");
+
+        /* error가 있다면 재전송 */
+        if(bindingResult.hasErrors()){
+            log.info("errors={}", bindingResult);
+            return "addPost";
+        }
 
         /* 저장 */
 
