@@ -4,7 +4,7 @@
 
 ### 앞선 프로젝트들
 [1] : [upload_toy](https://github.com/cpu500m/upload_toy)<br>
-[2] : [validation_toy](https://github.com/cpu500m/validation_toy)
+[2] : [validation_toy](https://github.com/cpu500m/validation_toy)<br>
 
 ### 이번 프로젝트에 추가하고자 하는 것들
 
@@ -17,4 +17,6 @@
 
 ## 이후 프로젝트들에서 확장할 사항들
 ### 게시물 검색기능 -> DB연결  ( + Oauth2도 써보고싶음(spring security를 통해!))
+
+## 후기
 

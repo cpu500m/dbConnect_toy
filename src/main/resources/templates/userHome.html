@@ -10,12 +10,13 @@
     <div class="py-4 text-center">
         <h2 th:text ="#{label.main}">게시판</h2>
     </div>
+    <h4 class="mb-3" th:text="|${memberDto.loginId}님. 안녕하세요!|">안녕하세요!</h4>
     <hr class="my-4">
     <div class="row">
         <div class="col">
-            <button class="btn btn-outline-success"
-                    onclick="location.href='login.html'" th:text = "#{button.login}"
-                    th:onclick="|location.href= '@{/login}'|" type="button">로그인</button>
+            <button class="btn btn-outline-danger"
+                    onclick="location.href='login.html'" th:text = "#{button.logout}"
+                    th:onclick="|location.href= '@{/logout}'|" type="button">로그아웃</button>
         </div>
         <div class="col">
             <button class="btn btn-outline-primary float-end"

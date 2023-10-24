@@ -1,4 +1,4 @@
-package toy1.upload_toy.controller;
+package toy1.upload_toy.web.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,11 +15,15 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriUtils;
 import toy1.upload_toy.domain.Item;
 import toy1.upload_toy.domain.ItemForm;
+import toy1.upload_toy.domain.Member;
 import toy1.upload_toy.domain.Post;
-import toy1.upload_toy.file.UploadFile;
+import toy1.upload_toy.web.annotation.Login;
+import toy1.upload_toy.web.dto.MemberDto;
+import toy1.upload_toy.web.file.UploadFile;
 import toy1.upload_toy.repository.ItemRepository;
 import toy1.upload_toy.repository.PostRepository;
 import toy1.upload_toy.service.FileService;
+import toy1.upload_toy.web.util.DtoUtils;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -38,11 +42,18 @@ public class MainController {
     private final FileService fileService;
 
     @GetMapping("/")
-    public String goHome(Model model) {
+    public String goHome(@Login Member member, Model model) {
         log.debug("home");
         List<Post> posts = postRepository.findAll();
+
+        MemberDto memberDto = DtoUtils.memberToMemberDto(member);
+        if (memberDto == null) {
+            return "home";
+        }
+
+        model.addAttribute("memberDto", memberDto);
         model.addAttribute("posts", posts);
-        return "home";
+        return "userHome";
     }
 
     /**

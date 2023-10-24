@@ -2,7 +2,7 @@ package toy1.upload_toy.domain;
 
 import lombok.Getter;
 import lombok.Setter;
-import toy1.upload_toy.file.UploadFile;
+import toy1.upload_toy.web.file.UploadFile;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package toy1.upload_toy.file;
+package toy1.upload_toy.web.file;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
