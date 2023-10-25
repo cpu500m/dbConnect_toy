@@ -1,4 +1,4 @@
-package toy1.upload_toy.domain;
+package toy1.upload_toy.web.dto;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -16,7 +16,7 @@ public class ItemForm {
 
     @Size(min = 2, max = 50)
     private String title;
-    @NotBlank
+//    @NotBlank
     private String writer;
     @Size(min = 10, max = 1000)
     private String text;

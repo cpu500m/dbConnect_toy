@@ -1,5 +1,6 @@
 package toy1.upload_toy.domain;
 
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Range;
@@ -10,19 +11,23 @@ import org.hibernate.validator.constraints.Range;
 public class Member {
     private Long memberId;
 
-    @Range(min = 7 , max = 30)
+    @Size(min = 7 , max = 30)
     private String loginId;
-    @Range(min = 7 , max = 30)
+    @Size(min = 7 , max = 30)
     private String password;
+    @Size(min = 2 , max = 15)
+
+    private String nickName;
 
     private Member(){
 
     }
 
-    public Member createMember(String id, String password) {
+    public static Member createMember(String id, String password, String nickName) {
         Member member= new Member();
         member.loginId = id;
         member.password = password;
+        member.nickName = nickName;
         return member;
     }
 }

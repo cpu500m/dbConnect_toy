@@ -11,6 +11,6 @@ public class DtoUtils {
         if (member == null) {
             return null;
         }
-        return MemberDto.createMemberDto(member.getLoginId(), member.getPassword());
+        return MemberDto.createMemberDto(member.getLoginId(), member.getPassword(),member.getNickName());
     }
 }

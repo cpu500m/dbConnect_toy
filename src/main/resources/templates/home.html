@@ -17,11 +17,6 @@
                     onclick="location.href='login.html'" th:text = "#{button.login}"
                     th:onclick="|location.href= '@{/login}'|" type="button">로그인</button>
         </div>
-        <div class="col">
-            <button class="btn btn-outline-primary float-end"
-                    onclick="location.href='addPost.html'" th:text = "#{button.write}"
-                    th:onclick="|location.href= '@{/addPost}'|" type="button">게시물 등록</button>
-        </div>
     </div>
     <div>
         <table class="table table-striped table-hover">
@@ -41,6 +36,8 @@
             </tbody>
         </table>
     </div>
+    <hr class="my-4">
+    <a href ="signUp.html" th:href="@{/sign-up}" th:text="#{label.signUp}"> 회원 가입</a>
 </div> <!-- /container -->
 </body>
 </html>

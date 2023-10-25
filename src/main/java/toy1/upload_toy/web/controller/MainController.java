@@ -1,5 +1,7 @@
 package toy1.upload_toy.web.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.Resource;
@@ -14,15 +16,17 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriUtils;
 import toy1.upload_toy.domain.Item;
-import toy1.upload_toy.domain.ItemForm;
+import toy1.upload_toy.web.dto.ItemForm;
 import toy1.upload_toy.domain.Member;
 import toy1.upload_toy.domain.Post;
 import toy1.upload_toy.web.annotation.Login;
 import toy1.upload_toy.web.dto.MemberDto;
+import toy1.upload_toy.web.exception.PostAuthorizationException;
 import toy1.upload_toy.web.file.UploadFile;
 import toy1.upload_toy.repository.ItemRepository;
 import toy1.upload_toy.repository.PostRepository;
 import toy1.upload_toy.service.FileService;
+import toy1.upload_toy.web.session.SessionConst;
 import toy1.upload_toy.web.util.DtoUtils;
 
 import java.io.IOException;
@@ -41,36 +45,55 @@ public class MainController {
 
     private final FileService fileService;
 
+    /**
+     * 홈 컨트롤러.
+     * 로그인 여부를 판단하여 적절한 페이지로 보냄.
+     */
     @GetMapping("/")
     public String goHome(@Login Member member, Model model) {
         log.debug("home");
         List<Post> posts = postRepository.findAll();
 
         MemberDto memberDto = DtoUtils.memberToMemberDto(member);
+        model.addAttribute("posts", posts);
         if (memberDto == null) {
             return "home";
         }
 
         model.addAttribute("memberDto", memberDto);
-        model.addAttribute("posts", posts);
         return "userHome";
     }
 
     /**
-     * 게시물 등록
+     * 게시물 등록.
+     * session을 이용하여 작성자를 자동 기입.
      */
     @GetMapping("/addPost")
-    public String post(@ModelAttribute ItemForm itemForm) {
-        log.debug("post");
+    public String post(@ModelAttribute ItemForm itemForm,
+                       HttpServletRequest request,
+                       Model model) {
+        HttpSession session = request.getSession(false);
+        if (session == null) {
+            throw new PostAuthorizationException("비정상적인 접근 (글 작성이 허가되지 않음)");
+        }
+
+        /* 세션저장소로 부터 Member 객체 꺼내 dto 객체로 변환 */
+        Member member = (Member)session.getAttribute(SessionConst.LOGIN_IDENTIFIER);
+        MemberDto memberDto = DtoUtils.memberToMemberDto(member);
+        model.addAttribute("memberDto", memberDto);
         return "addPost";
     }
 
     @PostMapping("/addPost")
     public String addPost(@Validated @ModelAttribute ItemForm itemForm,
                           BindingResult bindingResult,
+                          @ModelAttribute MemberDto memberDto,
                           RedirectAttributes redirectAttributes) throws IOException {
         List<UploadFile> imageFiles = fileService.storeFiles(itemForm.getImageFiles());
         UploadFile attachFile = fileService.storeFile(itemForm.getAttachFile());
+
+        // 작성자 저장
+        itemForm.setWriter(memberDto.getNickName());
 
         log.debug("addPost");
 

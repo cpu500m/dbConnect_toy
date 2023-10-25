@@ -27,14 +27,14 @@ color: #dc3545;
       <input type="text" id="title"  th:errorclass = "field-error" class="form-control" th:field ="*{title}"
              placeholder="제목을 입력하세요">
       <div class="field-error" th:each="error,stat : ${#fields.errors('title')}"
-           th:text="${error}" th:if="${stat.first}">
+           th:field="${error}" th:if="${stat.first}">
         제목 필수
       </div>
     </div>
     <div>
-      <label for="writer" th:text = "#{label.writer}">작성자</label>
-      <input type="text" id="writer" th:errorclass = "field-error" class="form-control" th:field ="*{writer}"
-             placeholder="닉네임을 입력하세요">
+      <label for="writer">작성자</label>
+      <input type="text" id="writer" th:errorclass = "field-error" class="form-control"
+              th:field ="${memberDto.nickName}" readonly>
       <div class="field-error" th:errors="*{writer}">
         작성자 필수
       </div>

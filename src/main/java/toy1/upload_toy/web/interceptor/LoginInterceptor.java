@@ -20,7 +20,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
         // 인증 실패 시 -> 로그인 화면으로 돌려보내고 컨트롤러로의 호출 흐름을 끊는다.
         if (session == null || session.getAttribute(LOGIN_IDENTIFIER) == null) {
-            response.sendRedirect("/login?redirectURI=" + uri);
+            response.sendRedirect("/login?redirectURL=" + uri);
 
             // for debugging
             log.debug("로그인 실패");

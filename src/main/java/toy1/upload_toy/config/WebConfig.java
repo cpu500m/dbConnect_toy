@@ -1,4 +1,4 @@
-package toy1.upload_toy.cinfig;
+package toy1.upload_toy.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
@@ -17,7 +17,7 @@ public class WebConfig implements WebMvcConfigurer {
                 .order(1)
                 .addPathPatterns("/**")
                 .excludePathPatterns("/css/**", "/*.ico", "/error",
-                        "/login", "/");
+                        "/login", "/", "/sign-up", "/post/**");
     }
 
     @Override
