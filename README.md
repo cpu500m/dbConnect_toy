@@ -21,10 +21,11 @@
 # 결과 
 ## 뷰 재구성
 - 로그인 전<br>
-<img width="361" alt="image" src="https://github.com/cpu500m/login_toy/assets/80875680/b97082d0-764c-4bbf-bf01-be685c2be326"><br>
+<img width="369" alt="image" src="https://github.com/cpu500m/login_toy/assets/80875680/0ab1df53-d61a-4443-ba55-5eb09d7fbbac"><br>
+
 
 - 로그인 후 <br>
-<img width="346" alt="image" src="https://github.com/cpu500m/login_toy/assets/80875680/c42eb198-47c2-4e93-a4d1-03003d0a3eb2"><br>
+<img width="331" alt="image" src="https://github.com/cpu500m/login_toy/assets/80875680/664fa4d0-91f9-40f3-b10f-57bc17065b31"><br>
 - 스프링 인터셉터 적용 (로그인한 사용자만 게시글 작성 가능 + login시 원래 요청한 경로로 redirect)<br>
 <img width="670" alt="image" src="https://github.com/cpu500m/login_toy/assets/80875680/badc1e77-ebaa-4263-837a-a224191a8f61"><br>
 
