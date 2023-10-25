@@ -20,9 +20,11 @@
 
 # 결과 
 ## 뷰 재구성
+- 회원가입 폼 <br>
+<img width="327" alt="image" src="https://github.com/cpu500m/login_toy/assets/80875680/3ac01a97-4a0e-4c48-8e59-e80ef7e24898"><br>
+
 - 로그인 전<br>
 <img width="369" alt="image" src="https://github.com/cpu500m/login_toy/assets/80875680/0ab1df53-d61a-4443-ba55-5eb09d7fbbac"><br>
-
 
 - 로그인 후 <br>
 <img width="331" alt="image" src="https://github.com/cpu500m/login_toy/assets/80875680/664fa4d0-91f9-40f3-b10f-57bc17065b31"><br>
