@@ -1,7 +1,7 @@
 spring:
   # log 색상
   output.ansi.enabled : always
-  ### DB
+  ### secret information
   profiles.include : info
   # auto DOL
   jpa:
@@ -14,6 +14,3 @@ spring:
   messages.basename: messages,errors
 # for debug
 logging.level.toy1.upload_toy : DEBUG
-
-  # 저장 파일 경로
-file.dir : /C:/upload_test/

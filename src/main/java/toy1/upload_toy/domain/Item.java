@@ -1,40 +1,50 @@
 package toy1.upload_toy.domain;
 
+import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.Setter;
-import toy1.upload_toy.web.file.UploadFile;
 
 import java.util.List;
 
 /**
- * Spring에서 제공하는 MultipartFile interface로 바이너리를 받아서 게시물 출력
- * 간단하게 메모리에 저장하는 형태로 할가러 setter 열었음
+ * 게시글 저장
  */
-@Getter @Setter
+@Getter
+@Entity
 public class Item {
+    @Id @GeneratedValue
     private Long itemId;
     private String title;
     private String writer;
     private String text;
-    private List<UploadFile> imageFiles;
-    private UploadFile attachFile;
 
-    // 생성자를 통해 생성하는 것이 아닌 메서드를 통해 생성하게 하고자 private으로 두었음.
-    // 향후 JPA 기술을 접목하면 protected로 바꾸던가 아니면 엔티티 구조가 바뀌던가 할듯.
-    private Item(){
+    // Item의 생명주기와 맞추게. Aggregate root로 관리
+    @OneToMany(mappedBy = "item", cascade = CascadeType.PERSIST ,orphanRemoval = true)
+    private List<UploadFile> imageFiles;
+
+    protected Item(){
 
     }
 
-    public static Item createItem(String title, String writer, String text,
-                           List<UploadFile> imageFiles, UploadFile file) {
+    public static Item createItem(String title, String writer, String text) {
         Item item = new Item();
         item.title = title;
         item.writer = writer;
         item.text = text;
-        item.imageFiles = imageFiles;
-        item.attachFile = file;
 
         return item;
     }
 
+    /**
+     * 제목 변경
+     */
+    public void changeTitle(String title){
+        this.title = title;
+    }
+
+    /**
+     * 내용 변경
+     */
+    public void changeText(String text){
+        this.text = text;
+    }
 }

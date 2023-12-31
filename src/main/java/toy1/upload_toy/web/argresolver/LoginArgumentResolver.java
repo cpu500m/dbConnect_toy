@@ -7,9 +7,8 @@ import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
-import toy1.upload_toy.domain.Member;
 import toy1.upload_toy.web.annotation.Login;
-import toy1.upload_toy.web.session.SessionConst;
+import toy1.upload_toy.web.dto.MemberDto;
 
 import static toy1.upload_toy.web.session.SessionConst.LOGIN_IDENTIFIER;
 
@@ -20,7 +19,7 @@ public class LoginArgumentResolver implements HandlerMethodArgumentResolver {
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
         return parameter.hasParameterAnnotation(Login.class)
-                && Member.class.isAssignableFrom(parameter.getParameterType());
+                && MemberDto.class.isAssignableFrom(parameter.getParameterType());
     }
 
     @Override

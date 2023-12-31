@@ -1,21 +1,24 @@
 package toy1.upload_toy.repository;
 
-import org.assertj.core.api.Assertions;
+import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import toy1.upload_toy.domain.Member;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
+@SpringBootTest
+@RequiredArgsConstructor
 class MemberRepositoryTest {
-    MemberRepository memberRepository = new MemberRepository();
+    private final MemberJpaRepository memberJpaRepository;
     @Test
     public void 저장테스트() throws Exception{
         //given
-        Member member1 = memberRepository.save(Member.createMember("test111", "test111", "테스터1"));
-        Member member2 = memberRepository.save(Member.createMember("test222", "test222", "테스터2"));
+        Member member1 = memberJpaRepository.save(Member.createMember("test111", "test111", "테스터1"));
+        Member member2 = memberJpaRepository.save(Member.createMember("test222", "test222", "테스터2"));
         //when
-        assertThat(memberRepository.findAll()).containsExactly(member1, member2);
+        assertThat(memberJpaRepository.findAll()).containsExactly(member1, member2);
 
         //then
     }
@@ -23,9 +26,9 @@ class MemberRepositoryTest {
     @Test
     public void 조회테스트() throws Exception{
         //given
-        Member member1 = memberRepository.save(Member.createMember("test111", "test111", "테스터1"));
+        Member member1 = memberJpaRepository.save(Member.createMember("test111", "test111", "테스터1"));
         //when
-        Member findMember = memberRepository.findByLoginId("test111").orElse(null);
+        Member findMember = memberJpaRepository.findByLoginId("test111").orElse(null);
         //then
         assertThat(findMember).isEqualTo(member1);
     }

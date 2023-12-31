@@ -1,14 +1,15 @@
 package toy1.upload_toy.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
-import lombok.Setter;
-import org.hibernate.validator.constraints.Range;
 
-// 일단 DB연동을 안헀으니 setter를 열어놨음.
-// DB연동 후 memberId는 autoIncrement 전략 사용 예정
-@Getter @Setter
+@Getter
+@Entity
 public class Member {
+    @Id @GeneratedValue
     private Long memberId;
 
     @Size(min = 7 , max = 30)

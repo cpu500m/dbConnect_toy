@@ -5,9 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import toy1.upload_toy.web.file.UploadFile;
-import toy1.upload_toy.repository.ItemRepository;
-import toy1.upload_toy.repository.PostRepository;
+import toy1.upload_toy.domain.UploadFile;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,9 +17,6 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class FileService {
-    private final ItemRepository itemRepository;
-    private final PostRepository postRepository;
-
     @Value("${file.dir}")
     private String fileDir;
 
@@ -53,13 +48,14 @@ public class FileService {
         String originName = multipartFile.getOriginalFilename();
         String storeName = makeFullName(originName);
 
+        // 저장
         multipartFile.transferTo(new File(getFullPath(storeName)));
 
         return new UploadFile(originName, storeName);
     }
 
     /**
-     * 편의 메서드
+     * 편의 메서드 ( UUID를 이용한 임의 이름 생성)
      */
     private static String makeFullName(String originName) {
         String uuid = UUID.randomUUID().toString();
@@ -68,7 +64,7 @@ public class FileService {
     }
 
     /**
-     * 편의 메서드
+     * 편의 메서드 (확장자 추출)
      */
     private static String extractExt(String originName) {
         int pos = originName.lastIndexOf(".");

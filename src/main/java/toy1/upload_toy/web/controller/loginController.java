@@ -13,11 +13,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import toy1.upload_toy.domain.Member;
-import toy1.upload_toy.repository.MemberRepository;
 import toy1.upload_toy.service.LoginService;
 import toy1.upload_toy.web.dto.MemberDto;
 import toy1.upload_toy.web.exception.DuplicateMemberExistException;
-import toy1.upload_toy.web.session.SessionConst;
+import toy1.upload_toy.web.util.DtoUtils;
 
 import static toy1.upload_toy.web.session.SessionConst.LOGIN_IDENTIFIER;
 
@@ -25,7 +24,6 @@ import static toy1.upload_toy.web.session.SessionConst.LOGIN_IDENTIFIER;
 @Slf4j
 @RequiredArgsConstructor
 public class loginController {
-    private final MemberRepository memberRepository;
     private final LoginService loginService;
 
     /**
@@ -56,7 +54,8 @@ public class loginController {
 
         // 성공한 경우. 세션 생성 + 기존 요청 주소로 리다이렉트
         HttpSession session = request.getSession();
-        session.setAttribute(LOGIN_IDENTIFIER, member);
+        memberDto = DtoUtils.memberToMemberDto(member);
+        session.setAttribute(LOGIN_IDENTIFIER, memberDto);
         return "redirect:" + redirectURL;
     }
 
@@ -99,5 +98,4 @@ public class loginController {
         model.addAttribute("memberDto", null);
         return "redirect:/login";
     }
-
 }

@@ -11,6 +11,9 @@ import java.util.List;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
+    /**
+     * 로그인 검증 인터셉터 추가
+     */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LoginInterceptor())
@@ -20,6 +23,9 @@ public class WebConfig implements WebMvcConfigurer {
                         "/login", "/", "/sign-up", "/post/**");
     }
 
+    /**
+     * @login Annotation processing argResolver 추가
+     */
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
         resolvers.add(new LoginArgumentResolver());
