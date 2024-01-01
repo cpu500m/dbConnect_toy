@@ -15,8 +15,16 @@ class ItemRepositoryTest {
     @Test
     public void 저장테스트() throws Exception{
         //given
-        Item save1 = itemRepository.save(Item.createItem("1", "나1", "대충쓰자ㅁㅁㅁㅁㅁㅁㅁ"));
-        Item save2 = itemRepository.save(Item.createItem("2", "너2", "대충쓰자ㅁㅁㅁㅁㅁㅁㅁ"));
+        Item save1 = itemRepository.save(Item.builder()
+                .title("1")
+                .writer("너1")
+                .text("대충대충~~!")
+                .build());
+        Item save2 = itemRepository.save(Item.builder()
+                .title("2")
+                .writer("너2")
+                .text("대충대충~123133~!")
+                .build());
 
         //when
         Assertions.assertThat(itemRepository.findById(save1.getItemId())).isEqualTo(save1);

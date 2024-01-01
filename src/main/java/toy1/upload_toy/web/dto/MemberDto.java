@@ -2,10 +2,11 @@ package toy1.upload_toy.web.dto;
 
 
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Builder;
+import lombok.Data;
 
-@Getter @Setter
+@Data
+@Builder
 public class MemberDto {
 
     @Size(min = 7 , max = 30)
@@ -16,16 +17,4 @@ public class MemberDto {
     @Size(min = 2 , max = 15)
 
     private String nickName;
-
-    private MemberDto(){
-
-    }
-
-    public static MemberDto createMemberDto(String id, String password, String nickName) {
-        MemberDto dto= new MemberDto();
-        dto.loginId = id;
-        dto.password = password;
-        dto.nickName = nickName;
-        return dto;
-    }
 }

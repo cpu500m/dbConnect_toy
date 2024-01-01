@@ -20,11 +20,25 @@ public class TestDataConfig {
     @PostConstruct
     public void init() {
         // 테스트 유저
-        memberJpaRepository.save(Member.createMember("test111", "test111","테스트1"));
-        memberJpaRepository.save(Member.createMember("test222", "test222","테스트2"));
+        memberJpaRepository.save(Member.builder()
+                .loginId("test111")
+                .password("test111")
+                .nickName("테스터1")
+                .build());
+        memberJpaRepository.save(Member.builder()
+                .loginId("test222")
+                .password("test222")
+                .nickName("테스터2")
+                .build());
 
-        // 포스트
-        itemJpaRepository.save(Item.createItem("안녕하세요!", "테스터1", "안녕하세요 반갑습니다!"));
-        itemJpaRepository.save(Item.createItem("안녕!", "테스터2", "안녕 반가워~~~!"));
+        // 게시물
+        itemJpaRepository.save(Item.builder().
+                title("안녕하세요!").
+                writer("테스터1").
+                text("안녕하세요 반갑습니다!").build());
+        itemJpaRepository.save(Item.builder().
+                title("안녕!!!").
+                writer("테스터2").
+                text("안녕 반갑다!").build());
     }
 }
