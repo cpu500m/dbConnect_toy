@@ -12,9 +12,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import toy1.upload_toy.domain.Item;
-import toy1.upload_toy.domain.UploadFile;
 import toy1.upload_toy.service.ItemService;
+import toy1.upload_toy.web.dto.ItemDto;
 import toy1.upload_toy.web.dto.Post;
 import toy1.upload_toy.web.dto.ItemForm;
 import toy1.upload_toy.web.annotation.Login;
@@ -43,11 +42,13 @@ public class MainController {
      */
     @GetMapping("/")
     public String goHome(@Login MemberDto memberDto, Model model) {
+
         log.debug("home");
+
         // List<ItemDto> 가져옴
         List<Post> posts = itemService.findAll();
-
         model.addAttribute("posts", posts);
+
         if (memberDto == null) {
             return "home";
         }
@@ -80,13 +81,11 @@ public class MainController {
                           BindingResult bindingResult,
                           @ModelAttribute MemberDto memberDto,
                           RedirectAttributes redirectAttributes) throws IOException {
-        List<UploadFile> imageFiles = fileService.storeFiles(itemForm.getImageFiles());
 
         log.debug("addPost");
 
         // 작성자 저장
         itemForm.setWriter(memberDto.getNickName());
-
 
         /* error가 있다면 재전송 */
         if(bindingResult.hasErrors()){
@@ -109,7 +108,7 @@ public class MainController {
         log.debug("readPost");
 
         // item 찾아서 model에 추가해서 넘김
-        Item item = itemService.findItem(itemId);
+        ItemDto item = itemService.findItem(itemId);
         model.addAttribute("item", item);
         return "post";
     }

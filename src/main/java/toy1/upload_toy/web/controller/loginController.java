@@ -46,7 +46,8 @@ public class loginController {
         }
 
         // 로그인 실패한 경우
-        Member member = loginService.login(memberDto.getLoginId(),memberDto.getPassword());
+        Member member = loginService.login(memberDto.getLoginId()
+                ,memberDto.getPassword());
         if (member == null) {
             bindingResult.reject("loginFail");
             return "login/loginForm";
@@ -95,6 +96,7 @@ public class loginController {
         }
 
         // 성공시 . 로그인 화면으로 보냄
+        // memberDto를 굳이 null로 담아야하나?.. 이거도 다시 한번 봐라 TODO
         model.addAttribute("memberDto", null);
         return "redirect:/login";
     }

@@ -14,6 +14,10 @@ public class UploadToyApplication {
 	 *  3 . JPA Repository 만들자 ( Spring Data 이용해서 하자)
 	 */
 
+
+	//TODO 2024/1/1
+	// 우선 Builder패턴 적용했으니깐 Dto or 엔티티 생성하는 곳 리팩터링 마저 마무리 ㄱㄱ
+
 	public static void main(String[] args) {
 		SpringApplication.run(UploadToyApplication.class, args);
 	}

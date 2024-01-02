@@ -14,14 +14,22 @@ public class DtoUtils {
         if (member == null) {
             return null;
         }
-        return MemberDto.createMemberDto(member.getLoginId(), member.getPassword(), member.getNickName());
+        return MemberDto.builder()
+                .loginId(member.getLoginId())
+                .password(member.getPassword())
+                .nickName(member.getNickName())
+                .build();
     }
 
     public static Post itemToPost(Item item) {
         if (item == null) {
             return null;
         }
-        return Post.createPost(item.getItemId(), item.getTitle(), item.getWriter());
+        return Post.builder()
+                .id(item.getItemId())
+                .title(item.getTitle())
+                .writer(item.getWriter())
+                .build();
     }
 
     public static Item itemFormToItem(ItemForm itemForm) {
@@ -32,7 +40,7 @@ public class DtoUtils {
         return Item.builder()
                 .title(itemForm.getTitle())
                 .writer(itemForm.getWriter())
-                .text(itemForm.getWriter())
+                .text(itemForm.getText())
                 .build();
     }
 
