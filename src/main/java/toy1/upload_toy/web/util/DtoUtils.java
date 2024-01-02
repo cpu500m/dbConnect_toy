@@ -10,14 +10,14 @@ import toy1.upload_toy.web.dto.MemberDto;
  * 도매인객체를 Dto로 변환해주는 편의 메서드 집함
  */
 public class DtoUtils {
-    public static MemberDto memberToMemberDto(Member member) {
-        if (member == null) {
+    public static Member memberDtoToMember(MemberDto memberDto) {
+        if (memberDto == null) {
             return null;
         }
-        return MemberDto.builder()
-                .loginId(member.getLoginId())
-                .password(member.getPassword())
-                .nickName(member.getNickName())
+        return Member.builder()
+                .loginId(memberDto.getLoginId())
+                .password(memberDto.getPassword())
+                .nickName(memberDto.getNickName())
                 .build();
     }
 
@@ -26,7 +26,7 @@ public class DtoUtils {
             return null;
         }
         return Post.builder()
-                .id(item.getItemId())
+                .postId(item.getItemId())
                 .title(item.getTitle())
                 .writer(item.getWriter())
                 .build();

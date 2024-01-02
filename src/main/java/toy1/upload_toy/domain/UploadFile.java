@@ -29,4 +29,7 @@ public class UploadFile {
         this.uploadName = uploadName;
         this.storeName = storeName;
     }
+    void setItem(Item item){
+        this.item = item;
+    }
 }

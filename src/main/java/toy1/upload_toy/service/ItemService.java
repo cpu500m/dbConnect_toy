@@ -2,6 +2,7 @@ package toy1.upload_toy.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import toy1.upload_toy.domain.Item;
 import toy1.upload_toy.domain.UploadFile;
 import toy1.upload_toy.repository.ItemJpaRepository;
@@ -15,9 +16,10 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class ItemService {
-    private ItemJpaRepository itemJpaRepository;
-    private FileService fileService;
+    private final ItemJpaRepository itemJpaRepository;
+    private final FileService fileService;
 
     public List<Post> findAll() {
         List<Item> items = itemJpaRepository.findAll();
@@ -53,6 +55,7 @@ public class ItemService {
                 .title(findItem.getTitle())
                 .writer(findItem.getWriter())
                 .text(findItem.getText())
+                .imageFiles(findItem.getImageFiles())
                 .build();
     }
 }

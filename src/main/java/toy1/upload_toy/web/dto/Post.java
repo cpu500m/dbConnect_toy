@@ -10,7 +10,7 @@ import lombok.Data;
 @Builder
 public class Post {
 
-    private Long id;
+    private Long postId;
     private String title;
     private String writer;
 }

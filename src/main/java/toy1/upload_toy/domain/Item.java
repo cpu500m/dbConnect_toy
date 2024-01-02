@@ -42,6 +42,7 @@ public class Item {
         // 이를 지키면서 코드 작성하기위해 아래처럼 했음.
         // 중복 체크 로직이 원래라면 필요하겠지만 뭐 이경우는 .. 굳이니깐
         for (UploadFile uploadFile : uploadFiles) {
+            uploadFile.setItem(this);
             imageFiles.add(uploadFile);
         }
     }

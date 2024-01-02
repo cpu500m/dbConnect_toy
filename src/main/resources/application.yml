@@ -8,7 +8,7 @@ spring:
     hibernate.ddl-auto : create
     # SQL 쿼리 확인
     properties.hibernate.format_sql: true
-    # 확장성을 위해
+    # OSIV false로 둬서 DB conn 유지 최소화
     open-in-view : false
   # 공용 메시지 / 에러 메시지 구분.
   messages.basename: messages,errors

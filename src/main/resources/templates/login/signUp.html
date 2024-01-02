@@ -20,7 +20,7 @@ color: #dc3545;
     <h2 th:text =#{label.assign}>회원 가입</h2>
   </div>
   <h4 class="mb-3" th:text="#{label.enterInfo}">회원 정보 입력</h4>
-  <form action="" th:action th:object="${member}" method="post">
+  <form action="" th:action th:object="${memberDto}" method="post">
     <div th:if="${#fields.hasGlobalErrors()}">
       <p class="field-error" th:each="err : ${#fields.globalErrors()}"
          th:text="${err}">회원가입 실패</p>

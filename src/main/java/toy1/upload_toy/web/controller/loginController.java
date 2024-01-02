@@ -46,16 +46,18 @@ public class loginController {
         }
 
         // 로그인 실패한 경우
-        Member member = loginService.login(memberDto.getLoginId()
-                ,memberDto.getPassword());
-        if (member == null) {
+        String nickName = loginService.login(memberDto.getLoginId()
+                , memberDto.getPassword());
+        if (nickName == null) {
             bindingResult.reject("loginFail");
             return "login/loginForm";
         }
 
+        // 성공한 경우 닉네임 저장
+        memberDto.setNickName(nickName);
+
         // 성공한 경우. 세션 생성 + 기존 요청 주소로 리다이렉트
         HttpSession session = request.getSession();
-        memberDto = DtoUtils.memberToMemberDto(member);
         session.setAttribute(LOGIN_IDENTIFIER, memberDto);
         return "redirect:" + redirectURL;
     }
@@ -73,12 +75,12 @@ public class loginController {
      * 회원 가입
      */
     @GetMapping("/sign-up")
-    public String signUp(@ModelAttribute Member member) {
+    public String signUp(@ModelAttribute MemberDto member) {
         return "login/signUp";
     }
 
     @PostMapping("/sign-up")
-    public String signUp(@Valid @ModelAttribute Member member,
+    public String signUp(@Valid @ModelAttribute MemberDto member,
                          BindingResult bindingResult , Model model) {
 
         // bean validation 걸린 경우 ( 7~30 자 만족 안할 때)
@@ -96,8 +98,6 @@ public class loginController {
         }
 
         // 성공시 . 로그인 화면으로 보냄
-        // memberDto를 굳이 null로 담아야하나?.. 이거도 다시 한번 봐라 TODO
-        model.addAttribute("memberDto", null);
         return "redirect:/login";
     }
 }

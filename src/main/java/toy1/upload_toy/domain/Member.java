@@ -3,7 +3,6 @@ package toy1.upload_toy.domain;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,12 +15,8 @@ public class Member {
     @Id @GeneratedValue
     private Long memberId;
 
-    @Size(min = 7 , max = 30)
     private String loginId;
-    @Size(min = 7 , max = 30)
     private String password;
-    @Size(min = 2 , max = 15)
-
     private String nickName;
 
     @Builder
